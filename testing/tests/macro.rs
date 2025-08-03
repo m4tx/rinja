@@ -630,3 +630,13 @@ fn test_macro_caller_is_defined_check() {
         "no caller defined|this time with caller"
     );
 }
+
+
+#[test]
+fn test_macro_include_from_caller_directory() {
+    #[derive(Template)]
+    #[template(path = "macro-include/caller/macro-include.html")]
+    struct MacroTemplate;
+
+    assert_eq!(MacroTemplate.render().unwrap(), "it works!");
+}
